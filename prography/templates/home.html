@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+{%block content%}
+
+{% for prographys in posts %}
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+      <h5 class="card-title"><span style="color:rgb(44, 151, 194)">{{ prographys.title }}</span></h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{ prographys.pub_data }}</h6>
+      <p class="card-text">{{ prographys.summary }}<a href="{% url 'detail' prographys.id %}">...더보기</a></p>
+        </div>
+    </div>
+</div>
+{%endfor%}
+<br>
+<div class="container">
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    {%if posts.has_previous%}
+    <li class="page-item"><a class="page-link" href="?page=1">FIRST</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{posts.previous_page_number}}">{{posts.previous_page_number}}</a></li>
+    {%endif%}
+    <li class="page-item"><a class="page-link" style="color:rgb(179, 0, 202)">{{posts.number}}</a></li>
+    {%if posts.has_next%}  
+    <li class="page-item"><a class="page-link" href="?page={{posts.next_page_number}}">{{posts.next_page_number}}</a></li>
+    <li class="page-item"><a class="page-link" href="?page={{posts.paginator.num_pages}}">LAST</a></li>
+    {%endif%}
+  </ul>
+</nav>
+</div>
+{% endblock %}

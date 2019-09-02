@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content%}
+
+
+<div class="container jumbotron">
+    
+    <h1>{{ prographys.title }}</h1>
+    <p>{{ prographys.pub_date|date:"Y-m-d" }}</p>
+    <h5>{{ prographys.body }}</h5>
+    <a href="{% url 'edit' prographys.id %}" class="change badge badge-primary">수정</a>
+    <a href="{% url 'delete' prographys.id %}" class="badge badge-secondary">삭제</a>
+    <a href="{% url 'home' %}">돌아가기</a>
+</div>
+{% endblock %}
